@@ -1,0 +1,25 @@
+000.mp4: an American football player
+001.mp4: a Black woman in a wedding dress
+002.mp4: a Medieval European King
+003.mp4: a man wearing a striped shirt and grey linen pants
+004.mp4: a man wearing a blue jean jacket and jean trousers
+005.mp4: a professional boxer
+006.mp4: a woman wearing a short jean skirt and a cropped top
+007.mp4: a DSLR photo of an elderly woman in a cardigan and skirt
+008.mp4: a man wearing a white tanktop and shorts
+009.mp4: a Roman soldier wearing a silver armor
+010.mp4: a ninja
+011.mp4: a DSLR photo of Joe Biden a grey suit
+012.mp4: a photo of Cristiano Ronaldo in orange soccer jersey
+013.mp4: a DSLR photo of Tim Cook
+014.mp4: a DSLR photo of Stephen Curry
+015.mp4: a DSLR photo of LeBron James
+016.mp4: an Asian karate master wearing a belt
+017.mp4: a DSLR photo of Leonardo DiCaprio in a maroon long sleeve top and cream-colored pants
+018.mp4: a DSLR photo of Messi
+019.mp4: a DSLR photo of Marilyn Monroe
+020.mp4: a photo of Elon Musk in gray long sleeve top
+021.mp4: a DSLR photo of Barack Obama in a suit
+022.mp4: a photo of Jason Statham in brown long sleeve top
+023.mp4: a DSLR photo of Donald Trump
+024.mp4: a DSLR photo of Mark Zuckerberg in blue jeans
