@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>AvatarNorm</title>
+<title>HumanNorm</title>
 <link href="./js/style.css" rel="stylesheet">
 <script type="text/javascript" src="./js/jquery.mlens-1.0.min.js"></script>
 <script type="text/javascript" src="./js/jquery.js"></script>
@@ -23,14 +23,16 @@
 
 <body>
 <div class="content">
-  <h1><strong>AvatarNorm: Learning Geometry-aware Diffusion Model for High-quality and Realistic 3D Human Generation</strong></h1>
-  <p id="authors" class="serif">
+  <h1><strong>Human<span style="color: #036bfc;">N</span><span style="color: #3503fc;">o</span><span style="color: #a200ff;">r</span><span style="color: #e250ff;">m</span>: Learning Normal Diffusion Model for High-quality and Realistic 3D Human Generation</strong></h1>
+  <p id="authors"><a href="https://xhuangcv.github.io/">Xin Huang<sup>1,*</sup></a> <a href="https://dsaurus.github.io/saurus/">Ruizhi Shao<sup>2,*</sup></a> <a href="https://qzhang-cv.github.io/">Qi Zhang<sup>1</sup></a> <a href="https://zhanghongwen.cn/">Hongwen Zhang<sup>2</sup></a> <a href="https://scholar.google.com/citations?user=PhkrqioAAAAJ&hl=en">Ying Feng<sup>1</sup></a> </p>
+  <p id="authors"><a href="https://www.liuyebin.com/">Yebin Liu<sup>2</sup></a> <a href="https://teacher.nwpu.edu.cn/qwang.html ">Qing Wang<sup>1</sup></a> <br>
     <br>
-    <a>Anonymous authors</sup></a>
-    <br>
-    <br>
-    <a>Under review at ICLR 2024</sup></a>
-  </p>
+  <span style="font-size: 24px"><sup>1</sup>Northwestern Polytechnical University &nbsp;
+  </span>
+  <span style="font-size: 24px">
+    <sup>2</sup>Tsinghua University
+ </span></p>
+ <br>
 
   <div class="row">
     <div class="col-full">
@@ -39,31 +41,62 @@
       </video>
     </div>
   </div>
-
+  
   <h3 style="text-align:center"><em>Given a prompt, our method is capable of generating a high-quality and realistic 3D human...</em></h3>
-
+  <font size="+2">
+    <p style="text-align: center;">
+      <a href="" target="_blank">[Paper]</a> &nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="" target="_blank">[Gallery]</a> &nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="" target="_blank">[Code]</a>
+      </p>
+  </font>
 </div>
+  
+
+
+
+<div class="content">
+  <p style="text-align:center; font-size: 2em;" class="serif">Abstract</p>
+  <p>Recent text-to-3D methods employing diffusion models have made significant advancements in 3D human generation. However, these approaches face challenges due to the limitations of the text-to-image diffusion model, which lacks an understanding of 3D structures. Consequently, these methods struggle to achieve high-quality human generation, resulting in smooth geometry and cartoon-like appearances. In this paper, we observed that fine-tuning text-to-image diffusion models with normal maps enables their adaptation into text-to-normal diffusion models, which enhances the 2D perception of 3D geometry while preserving the priors learned from large-scale datasets. Therefore, we propose HumanNorm, a novel approach for high-quality and realistic 3D human generation by learning the normal diffusion model including a normal-adapted diffusion model and a normal-aligned diffusion model. The normal-adapted diffusion model can generate high-fidelity normal maps corresponding to prompts with view-dependent text. The normal-aligned diffusion model learns to generate color images aligned with the normal maps, thereby transforming physical geometry details into realistic appearance. Leveraging the proposed normal diffusion model, we devise a progressive geometry generation strategy and coarse-to-fine texture generation strategy to enhance the efficiency and robustness of 3D human generation. Comprehensive experiments substantiate our method's ability to generate 3D humans with intricate geometry and realistic appearances, significantly outperforming existing text-to-3D methods in both geometry and texture quality. </p>
+</div>
+
 
 <div class="content">
   <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Methodology</p>
   <p style="font-size: 1.2em" class="serif">
-    To achieve high-quality and realistic 3D human generation, we propose AvatarNorm. The core of our approach lies in intergrating the geometry prior of 3D human into the existing 2D diffusion model. 
-    First, we collect an extensive 3D human dataset and intergrate geometry prior into 2D diffusion model by finetuning. The trained geometry-aware diffusion model excels in generating multi-view depth maps and normal maps of humans. Additionally, to ensure high-quality texture generation, we train a geometry-guided controlnet that efficiently integrates the geometry information of humans into the RGB generation process. Building upon the foundation of the geometry-aware diffusion model, we introduce a high-quality 3D human body generation framework.
+    Our method is designed for high-quality and realistic 3D human generation from given prompts. The whole framework consists of geometry and texture generation. We first propose the normal-adapted and depth-adapted diffusion model for the geometry generation. These two models can guide the rendered normal and depth maps to approach the learned distribution of high-fidelity normal and depth maps through the SDS loss, thereby achieving high-quality geometry generation. In terms of texture generation, we introduce the normal-aligned diffusion model and employ a coarse-to-fine strategy. The normal-aligned diffusion model leverages normal maps as guiding cues to ensure the alignment of the generated texture with geometry. At the coarse level, we exclusively employ the SDS loss, while at the fine level we incorporate the multi-step SDS and perceptual loss to achieve realistic texture generation.
   </p>
   <img class="summary-img" src="figs/pipeline.png" style="width:100%;"> <br>
-  <p style="font-size: 1.2em" class="serif">
-    The core of this framework comprises two main components. The first part focuses on human body geometry generation, utilizing a progressive geometric optimization approach to fully leverage the prior information from the geometry-aware diffusion model. After geometric optimization is completed, a coarse-to-fine texture optimization based on the geometry-guided diffusion model is employed to generate textures, resulting in a high-quality three-dimensional human body model.
-  </p>
+</div>
 
 
 
+<div class="content">
+  <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Gallery</p>
+  <p style="font-size: 1.2em" class="serif">Our approach enables the creation of lifelike human models featuring over 300,000 distinct faces and intricate 2K texture map. Explore our gallery for other generated models.</p>
+  <div >
+    <div class="row" style="display: flex; justify-content: center;">
+      <div class="col">
+        <video  height="256px" loop autoplay muted>
+          <source src="results/meshlab.mp4" type="video/mp4">
+        </video>
+        <p class="text-center" >View human model in MeshLab</p>
+      </div>
+      <div class="col" style="height: 64px; width: 64px;"></div>
+      <div class="col" style="height: 256px; width: 256px;">
+      <img class="summary-img" src="results/texture_kd.jpg" >
+      <p class="text-center">2K texture map</p>
+      </div>
+    </div>
+  </div>
+  
 </div>
 
 <!-- full body -->
 <div class="content">
   <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Results--Full-body</p>
   <p style="font-size: 1.2em" class="serif">
-    We showcase avatars generated by our method, which include full-body, upper-body, and head-only models. Additionally, we offer text-based editing capabilities for these avatars.<br>
+    We showcase 3D humans generated by our method, which include full-body, upper-body, and head-only models. Additionally, we offer text-based editing capabilities for these 3D humans.<br>
   </p>
 
   <div class="row">
@@ -78,7 +111,7 @@
       <video  width="100%" loop autoplay muted>
         <source src="results/fullbody_videos/001.mp4" type="video/mp4">
       </video>
-      <p class="text-center">a Black woman in a wedding dress</p>
+      <p class="text-center">a DSLR photo of Joe Biden</p>
     </div>
   </div>
 
@@ -151,28 +184,12 @@
       <video  width="100%" loop autoplay muted>
         <source src="results/fullbody_videos/010.mp4" type="video/mp4">
       </video>
-      <p class="text-center">a ninja</p>
+      <p class="text-center">a DSLR photo of Mark Zuckerberg in blue jeans</p>
     </div>
 
     <div class="col">
       <video  width="100%" loop autoplay muted>
         <source src="results/fullbody_videos/011.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Joe Biden</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/fullbody_videos/012.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Cristiano Ronaldo in orange soccer jersey</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/fullbody_videos/013.mp4" type="video/mp4">
       </video>
       <p class="text-center">a DSLR photo of Tim Cook</p>
     </div>
@@ -181,14 +198,14 @@
   <div class="row">
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/fullbody_videos/014.mp4" type="video/mp4">
+        <source src="results/fullbody_videos/012.mp4" type="video/mp4">
       </video>
       <p class="text-center">a DSLR photo of Stephen Curry</p>
     </div>
 
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/fullbody_videos/015.mp4" type="video/mp4">
+        <source src="results/fullbody_videos/013.mp4" type="video/mp4">
       </video>
       <p class="text-center">a DSLR photo of LeBron James</p>
     </div>
@@ -197,14 +214,14 @@
   <div class="row">
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/fullbody_videos/016.mp4" type="video/mp4">
+        <source src="results/fullbody_videos/014.mp4" type="video/mp4">
       </video>
       <p class="text-center">a karate master wearing a belt</p>
     </div>
 
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/fullbody_videos/017.mp4" type="video/mp4">
+        <source src="results/fullbody_videos/015.mp4" type="video/mp4">
       </video>
       <p class="text-center">a DSLR photo of Leonardo DiCaprio in a maroon long sleeve top</p>
     </div>
@@ -213,14 +230,14 @@
   <div class="row">
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/fullbody_videos/018.mp4" type="video/mp4">
+        <source src="results/fullbody_videos/016.mp4" type="video/mp4">
       </video>
       <p class="text-center">a DSLR photo of Messi</p>
     </div>
 
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/fullbody_videos/019.mp4" type="video/mp4">
+        <source src="results/fullbody_videos/017.mp4" type="video/mp4">
       </video>
       <p class="text-center">a DSLR photo of Marilyn Monroe</p>
     </div>
@@ -229,14 +246,14 @@
   <div class="row">
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/fullbody_videos/020.mp4" type="video/mp4">
+        <source src="results/fullbody_videos/018.mp4" type="video/mp4">
       </video>
       <p class="text-center">a DSLR photo of Elon Musk in gray long sleeve top</p>
     </div>
 
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/fullbody_videos/021.mp4" type="video/mp4">
+        <source src="results/fullbody_videos/019.mp4" type="video/mp4">
       </video>
       <p class="text-center">a DSLR photo of Barack Obama in a suit</p>
     </div>
@@ -245,28 +262,19 @@
   <div class="row">
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/fullbody_videos/022.mp4" type="video/mp4">
+        <source src="results/fullbody_videos/020.mp4" type="video/mp4">
       </video>
       <p class="text-center">a DSLR photo of Jason Statham in brown long sleeve top</p>
     </div>
 
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/fullbody_videos/023.mp4" type="video/mp4">
+        <source src="results/fullbody_videos/021.mp4" type="video/mp4">
       </video>
       <p class="text-center">a DSLR photo of Donald Trump</p>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/fullbody_videos/024.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Mark Zuckerberg in blue jeans</p>
-    </div>
-
-  </div>
 
   </div>
 
@@ -284,9 +292,9 @@
 
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/upperbody_videos/001.mp4" type="video/mp4">
+        <source src="results/upperbody_videos/007.mp4" type="video/mp4">
       </video>
-      <p class="text-center">a boy in a baseball uniform</p>
+      <p class="text-center">a woman in a business suit</p>
     </div>
   </div>
 
@@ -316,25 +324,9 @@
 
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/upperbody_videos/005.mp4" type="video/mp4">
+        <source src="results/upperbody_videos/022.mp4" type="video/mp4">
       </video>
-      <p class="text-center">a young woman in a green top, with her hair tied back in a ponytail</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/upperbody_videos/006.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a child in a school uniform</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/upperbody_videos/007.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a woman in a business suit</p>
+      <p class="text-center">a photo of Morgan Freeman in a deep blue shirt</p>
     </div>
   </div>
 
@@ -412,59 +404,12 @@
 
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/upperbody_videos/017.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Cristiano Ronaldo</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
         <source src="results/upperbody_videos/018.mp4" type="video/mp4">
       </video>
       <p class="text-center">a DSLR photo of Stephen Curry</p>
     </div>
-
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/upperbody_videos/019.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Leonardo DiCaprio</p>
-    </div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/upperbody_videos/020.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Messi</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/upperbody_videos/021.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Marilyn Monroe</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/upperbody_videos/022.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a photo of Morgan Freeman in a deep blue shirt</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/upperbody_videos/023.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Elon Musk</p>
-    </div>
-  </div>
 
   <div class="row">
     <div class="col">
@@ -476,20 +421,12 @@
 
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/upperbody_videos/025.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Jason Statham</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
         <source src="results/upperbody_videos/026.mp4" type="video/mp4">
       </video>
       <p class="text-center">a photo of Mark Zuckerberg in a wine red shirt</p>
     </div>
   </div>
+
 
   </div>
 
@@ -507,9 +444,9 @@
 
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/headonly_videos/001.mp4" type="video/mp4">
+        <source src="results/headonly_videos/014.mp4" type="video/mp4">
       </video>
-      <p class="text-center">a man with a square jaw, clean-shaven</p>
+      <p class="text-center">a DSLR photo of Leonardo DiCaprio</p>
     </div>
   </div>
 
@@ -539,9 +476,9 @@
 
     <div class="col">
       <video  width="100%" loop autoplay muted>
-        <source src="results/headonly_videos/005.mp4" type="video/mp4">
+        <source src="results/headonly_videos/016.mp4" type="video/mp4">
       </video>
-      <p class="text-center">a woman with high cheekbones, a small nose, and straight hair</p>
+      <p class="text-center">a DSLR photo of Morgan Freeman</p>
     </div>
   </div>
 
@@ -609,37 +546,7 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/headonly_videos/014.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Leonardo DiCaprio</p>
-    </div>
 
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/headonly_videos/015.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Messi</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/headonly_videos/016.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Morgan Freeman</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/headonly_videos/017.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Elon Musk</p>
-    </div>
-  </div>
 
   <div class="row">
     <div class="col">
@@ -657,15 +564,6 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop autoplay muted>
-        <source src="results/headonly_videos/020.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Mark Zuckerberg</p>
-    </div>
-
-  </div>
 
 
   </div>
@@ -674,7 +572,7 @@
 <div class="content">
   <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Text-based Editing</p>
   <p style="font-size: 1.2em" class="serif">
-    Our method offers the capability to edit both the <b>texture and geometry</b> of the generated avatars by adjusting the input prompt.<br>
+    Our method offers the capability to edit both the <b>texture and geometry</b> of the generated 3D humans by adjusting the input prompt.<br>
 
   </p>
 
@@ -747,7 +645,24 @@
 
 <div class="content">
   <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Pose Editing</p>
-  
+  <p style="font-size: 1.2em" class="serif">
+  Our method also provides the ability to editing the pose of the generated avatars by adjusting the pose of the initialization mesh and modifying the prompts.
+  </p> 
+  <div class="row">
+    <div class="col">
+      <video  width="100%" loop autoplay muted>
+        <source src="results/editing_videos/pose1.mp4" type="video/mp4">
+      </video>
+      <p class="text-center">a photo of Elon Musk with his hands on his hips</p>
+    </div>
+
+    <div class="col">
+      <video  width="100%" loop autoplay muted>
+        <source src="results/editing_videos/pose2.mp4" type="video/mp4">
+      </video>
+      <p class="text-center">a photo of Elon Musk raising a hand</p>
+    </div>
+  </div>
 
   </div>
 
@@ -756,8 +671,8 @@
 </div>
 
 <div class="content">
-  <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Societal Impact</p>
-  <p>The objective of this project is to equip users with a powerful tool for creating realistic 3D avatars. Our strategy allows users to generate 3D avatars based on their specific prompts. However, there is a potential risk that these generated models could be misused by malicious entities to deceive viewers, a problem that is not unique to our approach but is prevalent in other generative model methodologies and content manipulation techniques. Therefore, it is imperative for ongoing and future research in generative modeling to continually address and reevaluate these concerns.</p>
+  <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Ethics Statement</p>
+  <p>The objective of HumanNorm is to equip users with a powerful tool for creating realistic 3D Human models. Our method allows users to generate 3D Humans based on their specific prompts. However, there is a potential risk that these generated models could be misused to deceive viewers. This problem is not unique to our approach but is prevalent in other generative model methodologies. Moreover, it is of paramount importance to give precedence to diversity in terms of gender, race, and culture. As such, it is absolutely essential for current and future research in the field of generative modeling to consistently address and reassess these considerations.</p>
   <br>
 </div>
 
