@@ -39,9 +39,7 @@
 
   <div class="row">
     <div class="col-full">
-      <video  width="100%" loop autoplay  muted>
-        <source src="results/teaser/teaser.mp4" type="video/mp4">
-      </video>
+      <img class="summary-img" src="figs/teaser.png" style="width:100%;">
     </div>
   </div>
   
@@ -54,623 +52,188 @@
       </p>
   </font>
 </div>
-  
-
-
-
-<div class="content">
-  <p style="text-align:center; font-size: 2em;" class="serif">Abstract</p>
-  <p>Recent text-to-3D methods employing diffusion models have made significant advancements in 3D human generation. However, these approaches face challenges due to the limitations of the text-to-image diffusion model, which lacks an understanding of 3D structures. Consequently, these methods struggle to achieve high-quality human generation, resulting in smooth geometry and cartoon-like appearances. In this paper, we observed that fine-tuning text-to-image diffusion models with normal maps enables their adaptation into text-to-normal diffusion models, which enhances the 2D perception of 3D geometry while preserving the priors learned from large-scale datasets. Therefore, we propose HumanNorm, a novel approach for high-quality and realistic 3D human generation by learning the normal diffusion model including a normal-adapted diffusion model and a normal-aligned diffusion model. The normal-adapted diffusion model can generate high-fidelity normal maps corresponding to prompts with view-dependent text. The normal-aligned diffusion model learns to generate color images aligned with the normal maps, thereby transforming physical geometry details into realistic appearance. Leveraging the proposed normal diffusion model, we devise a progressive geometry generation strategy and coarse-to-fine texture generation strategy to enhance the efficiency and robustness of 3D human generation. Comprehensive experiments substantiate our method's ability to generate 3D humans with intricate geometry and realistic appearances, significantly outperforming existing text-to-3D methods in both geometry and texture quality. </p>
-</div>
 
 
 <div class="content">
   <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Methodology</p>
   <p style="font-size: 1.2em" class="serif">
-    Our method is designed for high-quality and realistic 3D human generation from given prompts. The whole framework consists of geometry and texture generation. We first propose the normal-adapted and depth-adapted diffusion model for the geometry generation. These two models can guide the rendered normal and depth maps to approach the learned distribution of high-fidelity normal and depth maps through the SDS loss, thereby achieving high-quality geometry generation. In terms of texture generation, we introduce the normal-aligned diffusion model and employ a coarse-to-fine strategy. The normal-aligned diffusion model leverages normal maps as guiding cues to ensure the alignment of the generated texture with geometry. At the coarse level, we exclusively employ the SDS loss, while at the fine level we incorporate the multi-step SDS and perceptual loss to achieve realistic texture generation.
+    Our method is designed for high-quality and realistic 3D human generation from given prompts. The whole framework consists of geometry and texture generation. We first propose the normal-adapted and depth-adapted diffusion model for the geometry generation. These two models can guide the rendered normal and depth maps to approach the learned distribution of high-fidelity normal and depth maps through the SDS loss, thereby achieving high-quality geometry generation. In terms of texture generation, we introduce the normal-aligned diffusion model. The normal-aligned diffusion model leverages normal maps as guiding cues to ensure the alignment of the generated texture with geometry. We first exclusively employ the SDS loss and then incorporate the multi-step SDS and perceptual loss to achieve realistic texture generation.
   </p>
   <img class="summary-img" src="figs/pipeline.png" style="width:100%;"> <br>
+
+
+
+
 </div>
 
-
-
+<!-- results -->
 <div class="content">
-  <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Gallery</p>
-  <p style="font-size: 1.2em" class="serif">Our approach enables the creation of lifelike human models featuring 200k-400k distinct faces and intricate 2K texture map. Explore our <a href="https://mailstsinghuaeducn-my.sharepoint.com/:f:/g/personal/shaorz20_mails_tsinghua_edu_cn/EoJwWzJWp6BEv_SnuTd1rPUBimjlBDiqFcDGrIxT7lH09Q?e=1Axj3i">gallery</a> for more generated models.</p>
-  <div >
-    <div class="row" style="display: flex; justify-content: center;">
-      <div class="col">
-        <video  height="256px" loop autoplay muted>
-          <source src="results/meshlab.mp4" type="video/mp4">
-        </video>
-        <p class="text-center" >View human model in MeshLab (Shading: None)</p>
-      </div>
-      <div class="col" style="height: 64px; width: 64px;"></div>
-      <div class="col" style="height: 256px; width: 256px;">
-      <img class="summary-img" src="results/texture_kd.jpg" >
-      <p class="text-center">2K texture map</p>
-      </div>
-    </div>
-  </div>
-  
-</div>
-
-<!-- full body -->
-<div class="content">
-  <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Results--Full-body</p>
+  <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Results -- Head Only & Upper Body </p>
   <p style="font-size: 1.2em" class="serif">
-    We showcase 3D humans generated by our method, which include full-body, upper-body, and head-only models. Additionally, we offer text-based editing capabilities for these 3D humans.<br>
+    We showcase 3D humans generated by our method, which include full-body, upper-body, and head-only models.<br>
   </p>
 
+
+
   <div class="row">
-    <div class="col">
+    <div class="col-full">
       <video  width="100%" loop controls>
-        <source src="results/fullbody_videos/000.mp4" type="video/mp4">
+        <source src="results/main_results/head_only_and_upper_body.mp4" type="video/mp4">
       </video>
-      <p class="text-center">an American football player</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop  controls>
-        <source src="results/fullbody_videos/001.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Joe Biden</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop   controls >
-        <source src="results/fullbody_videos/002.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a Medieval European King</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/003.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a man wearing a striped shirt and grey linen pants</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/004.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a man wearing a blue jean jacket and jean trousers</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/005.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a professional boxer</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/006.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a woman wearing a short jean skirt and a cropped top</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/007.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">an elderly woman in a cardigan and skirt</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/008.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a man wearing a white tanktop and shorts</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/009.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a Roman soldier wearing a silver armor</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/010.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Mark Zuckerberg in blue jeans</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/011.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Tim Cook</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/012.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Stephen Curry</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/013.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of LeBron James</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/014.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a karate master wearing a belt</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop   controls >
-        <source src="results/fullbody_videos/015.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Leonardo DiCaprio in a maroon long sleeve top</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop   controls >
-        <source src="results/fullbody_videos/016.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Messi</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/017.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Marilyn Monroe</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop   controls >
-        <source src="results/fullbody_videos/018.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Elon Musk in gray long sleeve top</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/019.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Barack Obama in a suit</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/020.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Jason Statham in brown long sleeve top</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%" loop  controls  >
-        <source src="results/fullbody_videos/021.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Donald Trump</p>
     </div>
   </div>
 
 
-  </div>
+</div>
 
-  <!-- upper body -->
 <div class="content">
-  <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Results--Upper-body</p>
+  <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Results -- Full Body</p>
 
   <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/000.mp4" type="video/mp4">
+    <div class="col-full">
+      <video  width="100%" loop controls>
+        <source src="results/main_results/full_body.mp4" type="video/mp4">
       </video>
-      <p class="text-center">a woman in a sari</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/007.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a woman in a business suit</p>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/002.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a man in a tuxedo, with a crisp white shirt and bow tie</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/003.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a woman in an evening gown, with sparkling diamond earrings</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/004.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">an elderly man in a fishing vest</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/022.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a photo of Morgan Freeman in a deep blue shirt</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/008.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a woman in a red dress, with a delicate gold necklace around her neck</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/009.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a teenager in a leather jacket</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/010.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">an elderly man in a cardigan sweater</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/011.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a child in a superhero costume, with a cape flowing behind them</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/012.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a woman in a chef's coat</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/013.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a girl in a ballet leotard</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/014.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a man in workout gear</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/015.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Joe Biden</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/016.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">an asian woman in bikini</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/018.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Stephen Curry</p>
-    </div>
   </div>
 
 
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/024.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Barack Obama</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/upperbody_videos/026.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a photo of Mark Zuckerberg in a wine red shirt</p>
-    </div>
-  </div>
-
-
-  </div>
-
-  <!-- head only -->
+<!-- comparisons -->
 <div class="content">
-  <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Results--Head-only</p>
+  <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Comparisons with Text-to-3D Content Methods</p>
 
   <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/000.mp4" type="video/mp4">
+    <div class="col-full">
+      <video  width="100%" loop controls>
+        <source src="results/comparisons/comparison_video_p1.mp4" type="video/mp4">
       </video>
-      <p class="text-center">a young man with a muscular jawline, stubble beard, and wearing a baseball cap</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/014.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Leonardo DiCaprio</p>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/002.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a photo of Scarlett Johansson</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/003.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">Rick Grimes in The Walking Dead</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/004.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">Daryl Dixon in The Walking Dead</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/016.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Morgan Freeman</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/006.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a man with dreadlocks</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/007.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a man with a pompadour hairstyle, his hair slicked back stylishly</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/008.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a man in his fifties with salt-and-pepper hair styled in a quiff</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/009.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">an elderly woman with deep wrinkles, sparkling eyes, and white hair tied in a bun</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/010.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Joe Biden</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/011.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Cristiano Ronaldo</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/012.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Stephen Curry</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/013.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Bill Gates</p>
-    </div>
   </div>
 
 
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/018.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Jason Statham</p>
+  <div class="content">
+    <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Comparisons with Text-to-3D Human Methods</p>
+  
+    <div class="row">
+      <div class="col-full">
+        <video  width="100%" loop controls>
+          <source src="results/comparisons/comparison_video_p2.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  
     </div>
 
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/headonly_videos/019.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a DSLR photo of Daenerys Targaryen</p>
-    </div>
-  </div>
-
-
-
-  </div>
 
   <!-- editing -->
 <div class="content">
-  <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Text-based Editing</p>
+  <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Applications -- Text-based Editing</p>
   <p style="font-size: 1.2em" class="serif">
-    Our method offers the capability to edit both the <b>texture and geometry</b> of the generated 3D humans by adjusting the input prompt.<br>
+    HumanNorm offers the capability to edit both the <b>texture and geometry</b> of the generated 3D humans by adjusting the input prompt.<br>
 
   </p>
 
   <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/editing_videos/000.mp4" type="video/mp4">
+    <div class="col-full">
+      <video  width="100%" loop autoplay muted>
+        <source src="results/editing_videos/textbasedediting.mp4" type="video/mp4">
       </video>
-      <p class="text-center">a photo of Messi in a purple shirt with afro hair</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/editing_videos/002.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a photo of Messi in a brown shirt with cornrows hair</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/editing_videos/003.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a photo of Messi in a pink shirt with mohawk hair</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/editing_videos/004.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a photo of Messi in a baseball hat</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/editing_videos/009.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a photo of Messi in a blue tank top</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/editing_videos/005.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a photo of Messi in a gray jacket</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/editing_videos/008.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a photo of Messi in a yellow sweater</p>
-    </div>
-
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/editing_videos/007.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a photo of Messi in a suit</p>
     </div>
   </div>
 
 
   </div>
 
-<div class="content">
-  <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Pose Editing</p>
-  <p style="font-size: 1.2em" class="serif">
-  Our method also provides the ability to editing the pose of the generated avatars by adjusting the pose of the initialization mesh and modifying the prompts.
-  </p> 
-  <div class="row">
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/editing_videos/pose1.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a photo of Elon Musk with his hands on his hips</p>
+
+  <div class="content">
+    <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Applications -- 3D Animation</p>
+    <p style="font-size: 1.2em" class="serif">
+      HumanNorm enables the creation of lifelike human mesh featuring about 400K distinct faces and intricate 2K-resolution texture map. Based on the high-quality models, we can animate them using full-body motion sequences. Explore our <a href="https://mailstsinghuaeducn-my.sharepoint.com/:f:/g/personal/shaorz20_mails_tsinghua_edu_cn/EoJwWzJWp6BEv_SnuTd1rPUBimjlBDiqFcDGrIxT7lH09Q?e=1Axj3i">gallery</a> for more generated models.</p>
+    </p> 
+    <div >
+      <div class="row" style="display: flex; justify-content: center;">
+        <div class="col">
+          <video  height="256px" loop autoplay muted>
+            <source src="results/animation/meshlab.mp4" type="video/mp4">
+          </video>
+          <p class="text-center" ><b>View human model in MeshLab (Shading: None)</b></p>
+        </div>
+        <div class="col" style="height: 64px; width: 64px;"></div>
+        <div class="col" style="height: 256px; width: 256px;">
+        <img class="summary-img" src="results/animation/texture_kd.jpg" >
+        <p class="text-center"><b>2K-resolution texture map</b></p>
+        </div>
+      </div>
     </div>
 
-    <div class="col">
-      <video  width="100%"  loop controls    >
-        <source src="results/editing_videos/pose2.mp4" type="video/mp4">
-      </video>
-      <p class="text-center">a photo of Elon Musk raising a hand</p>
+    <div class="row">
+      <div class="col-gallery">
+        <video  width="100%" loop autoplay muted>
+          <source src="results/animation/musk1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="col-gallery">
+        <video  width="100%" loop autoplay muted>
+          <source src="results/animation/biden1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="col-gallery">
+        <video  width="100%" loop autoplay muted>
+          <source src="results/animation/boxer1.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
-  </div>
 
-  </div>
+    <div class="row">
+      <div class="col-gallery">
+        <video  width="100%" loop autoplay muted>
+          <source src="results/animation/musk2.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="col-gallery">
+        <video  width="100%" loop autoplay muted>
+          <source src="results/animation/biden2.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="col-gallery">
+        <video  width="100%" loop autoplay muted>
+          <source src="results/animation/boxer2.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <p class="text-center"><b>Animation Results</b></p>
 
 
 </div>
+</div>
+
+
+
+<div class="content">
+  <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Applications -- Pose Editing</p>
+  <p style="font-size: 1.2em" class="serif">
+    HumanNorm also provides the ability to edit the pose of generated 3D humans by adjusting the pose of the mesh used for initialization and modifying the prompts.
+  </p> 
+  <div class="row">
+    <div class="col">
+      <video  width="100%" loop autoplay muted>
+        <source src="results/editing_videos/pose1.mp4" type="video/mp4">
+      </video>
+      <p class="text-center"><b>a photo of Elon Musk with his hands on his hip</b></p>
+    </div>
+
+    <div class="col">
+      <video  width="100%" loop autoplay muted>
+        <source src="results/editing_videos/pose2.mp4" type="video/mp4">
+      </video>
+      <p class="text-center"><b>a photo of Elon Musk raising a hand</b></p>
+    </div>
+  </div>
+
 </div>
 
 <div class="content">
